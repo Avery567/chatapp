@@ -1,14 +1,18 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ScrollToBottom from "react-scroll-to-bottom";
 
 function Chat(){
 
+    const rendo = () => Math.floor(Math.random()*100)
+    const id = rendo()
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
+
 
     const sendMessage = () => {
         if (currentMessage !== ""){
             const messageData = {
+                id: id,
                 message: currentMessage,
                 time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
             }
@@ -18,6 +22,12 @@ function Chat(){
         }
     }
 
+    const deleteMessage = (deletedMessage) => {
+      // console.log(deletedMessage)
+        const newMessageList = messageList.filter((singleMessage) => singleMessage.id !== deletedMessage.id);
+        setMessageList(newMessageList)
+    }
+// console.log(messageLis)
     return(
         <div className="chat-window">
             <div className="chat-header">
@@ -29,10 +39,12 @@ function Chat(){
             return (
               <div
                 className="message"
+                key={rendo()}
               >
                 <div>
                   <div className="message-content">
                     <p >{messageContent.message}</p>
+                    <button onClick={()=>deleteMessage(messageContent)}>🗑</button>
                   </div>
                   <div className="message-meta">
                     <p id="time">{messageContent.time}</p>
