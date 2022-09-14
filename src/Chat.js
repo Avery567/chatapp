@@ -3,7 +3,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 
 function Chat(){
 
-    const rendo = () => Math.floor(Math.random()*100)
+    const rendo = () => Math.floor(Math.random()*1000000000)
     const id = rendo()
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
