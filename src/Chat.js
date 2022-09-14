@@ -32,7 +32,7 @@ function Chat(){
               >
                 <div>
                   <div className="message-content">
-                    <p>{messageContent.message}</p>
+                    <p >{messageContent.message}</p>
                   </div>
                   <div className="message-meta">
                     <p id="time">{messageContent.time}</p>
